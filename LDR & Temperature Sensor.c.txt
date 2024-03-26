@@ -1,0 +1,47 @@
+//To Control the LED using LDR. 
+
+const int ledPin = 12; 
+const int ldrPin = A0; 
+
+int ldrPreviousStatus=0;
+void setup() {
+ Serial.begin(9600);
+ pinMode(ledPin, OUTPUT); 
+ pinMode(ldrPin, INPUT); 
+}
+
+void loop() {
+ int ldrStatus = analogRead(ldrPin); 
+ Serial.println(ldrStatus);
+
+If(ldrStatus!=ldrPreviousStatus)
+{
+if (ldrStatus <=80)
+ digitalWrite(ledPin, HIGH);
+ else
+ digitalWrite(ledPin, LOW); 
+
+ldrPreviousStatus=ldrStatus;
+ }
+} 
+
+
+
+
+//Temperature Sensor
+
+const int lm35_pin = A0; 
+void setup() {
+ Serial.begin(9600);
+}
+void loop() {
+ int temp_adc_val;
+ float temp_val;
+ temp_adc_val = analogRead(lm35_pin); 
+ temp_val = (temp_adc_val * 4.88); 
+ temp_val = (temp_val/10); 
+ Serial.print("Temperature = ");
+ Serial.print(temp_val);
+ Serial.print(" Degree Celsius\n");
+ delay(1000);
+}
